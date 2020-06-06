@@ -284,9 +284,8 @@ def get_anchor_gt(all_img_data, class_count, C, img_length_calc_function, backen
             random.shuffle(all_img_data)
         print('all', len(all_img_data))
         for img_data in all_img_data:
-            print('hi!')
-            # if C.balanced_classes and sample_selector.skip_sample_for_balanced_class(img_data):
-            #     continue
+            if C.balanced_classes and sample_selector.skip_sample_for_balanced_class(img_data):
+                continue
 
             # read in image, and optionally add augmentation
 
