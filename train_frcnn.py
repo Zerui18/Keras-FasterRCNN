@@ -218,21 +218,26 @@ for epoch_num in range(num_epochs):
 
         # data generator에서 X, Y, image 가져오기
         X, Y, img_data = next(data_gen_train)
+        print('got data')
 
         loss_rpn = model_rpn.train_on_batch(X, Y)
+        print('rpn trained')
         write_log(callback, ['rpn_cls_loss', 'rpn_reg_loss'], loss_rpn, train_step)
 
         P_rpn = model_rpn.predict_on_batch(X)
-
+        print('rpb pred')
         R = roi_helpers.rpn_to_roi(P_rpn[0], P_rpn[1], C, K.image_data_format(), use_regr=True, overlap_thresh=0.7, max_boxes=300)
         # note: calc_iou converts from (x1,y1,x2,y2) to (x,y,w,h) format
         X2, Y1, Y2, IouS = roi_helpers.calc_iou(R, img_data, C, class_mapping)
+        print(X2, Y1, Y2, IouS)
 
         if X2 is None:
             rpn_accuracy_rpn_monitor.append(0)
             rpn_accuracy_for_epoch.append(0)
+            print('skipped')
             continue
 
+        print('moving on')
         # sampling positive/negative samples
         neg_samples = np.where(Y1[0, :, -1] == 1)
         pos_samples = np.where(Y1[0, :, -1] == 0)
@@ -247,8 +252,11 @@ for epoch_num in range(num_epochs):
         else:
             pos_samples = []
 
+        print('got samples ', len(pos_samples))
         rpn_accuracy_rpn_monitor.append(len(pos_samples))
         rpn_accuracy_for_epoch.append((len(pos_samples)))
+
+        print('C.num_rois = ', C.num_rois)
 
         if C.num_rois > 1:
             if len(pos_samples) < C.num_rois//2:
@@ -279,6 +287,7 @@ for epoch_num in range(num_epochs):
             else:
                 sel_samples = random.choice(pos_samples)
 
+        print('loss computation')
         loss_class = model_classifier.train_on_batch([X, X2[:, sel_samples, :]], [Y1[:, sel_samples, :], Y2[:, sel_samples, :]])
         write_log(callback, ['detection_cls_loss', 'detection_reg_loss', 'detection_acc'], loss_class, train_step)
         train_step += 1
