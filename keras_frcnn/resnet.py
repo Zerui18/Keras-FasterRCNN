@@ -178,9 +178,11 @@ def nn_base(input_tensor=None, trainable=False):
     else:
         bn_axis = 1
 
+    print('input to pad: ', img_input)
     x = ZeroPadding2D((3, 3))(img_input)
-
+    print('input to conv2d: ', x)
     x = Conv2D(64, (7, 7), strides=(2, 2), name='conv1', trainable = trainable)(x)
+    print('input to batch norm: ', x)
     x = FixedBatchNormalization(axis=bn_axis, name='bn_conv1')(x)
     x = Activation('relu')(x)
     x = MaxPooling2D((3, 3), strides=(2, 2))(x)
