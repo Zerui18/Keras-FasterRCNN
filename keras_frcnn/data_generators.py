@@ -282,12 +282,12 @@ def get_anchor_gt(all_img_data, class_count, C, img_length_calc_function, backen
     while True:
         if mode == 'train':
             random.shuffle(all_img_data)
-
+        print('all')
         for img_data in all_img_data:
             try:
-
-                if C.balanced_classes and sample_selector.skip_sample_for_balanced_class(img_data):
-                    continue
+                print('hi!')
+                # if C.balanced_classes and sample_selector.skip_sample_for_balanced_class(img_data):
+                #     continue
 
                 # read in image, and optionally add augmentation
 
@@ -312,6 +312,7 @@ def get_anchor_gt(all_img_data, class_count, C, img_length_calc_function, backen
                     # rpn ground-truth cls, reg
                     y_rpn_cls, y_rpn_regr = calc_rpn(C, img_data_aug, width, height, resized_width, resized_height, img_length_calc_function)
                 except:
+                    print('datagen err')
                     continue
 
                 # Zero-center by mean pixel, and preprocess image
@@ -328,10 +329,9 @@ def get_anchor_gt(all_img_data, class_count, C, img_length_calc_function, backen
 
                 y_rpn_regr[:, y_rpn_regr.shape[1]//2:, :, :] *= C.std_scaling
 
-                if backend == 'tf':
-                    x_img = np.transpose(x_img, (0, 2, 3, 1))
-                    y_rpn_cls = np.transpose(y_rpn_cls, (0, 2, 3, 1))
-                    y_rpn_regr = np.transpose(y_rpn_regr, (0, 2, 3, 1))
+                x_img = np.transpose(x_img, (0, 2, 3, 1))
+                y_rpn_cls = np.transpose(y_rpn_cls, (0, 2, 3, 1))
+                y_rpn_regr = np.transpose(y_rpn_regr, (0, 2, 3, 1))
 
                 yield np.copy(x_img), [np.copy(y_rpn_cls), np.copy(y_rpn_regr)], img_data_aug
 
