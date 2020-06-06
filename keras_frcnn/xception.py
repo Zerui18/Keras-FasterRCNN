@@ -23,7 +23,7 @@ from keras_frcnn.FixedBatchNormalization import FixedBatchNormalization
 
 
 def get_weight_path():
-    if K.image_dim_ordering() == 'th':
+    if K.image_data_format() == 'th':
         return 'xception_weights_tf_dim_ordering_tf_kernels_notop.h5'
     else:
         return 'xception_weights_tf_dim_ordering_tf_kernels.h5'
@@ -47,7 +47,7 @@ def get_img_output_length(width, height):
 def nn_base(input_tensor=None, trainable=False):
 
     # Determine proper input shape
-    if K.image_dim_ordering() == 'th':
+    if K.image_data_format() == 'th':
         input_shape = (3, None, None)
     else:
         input_shape = (None, None, 3)
@@ -60,7 +60,7 @@ def nn_base(input_tensor=None, trainable=False):
         else:
             img_input = input_tensor
 
-    if K.image_dim_ordering() == 'tf':
+    if K.image_data_format() == 'tf':
         bn_axis = 3
     else:
         bn_axis = 1
