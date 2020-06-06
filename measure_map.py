@@ -200,7 +200,7 @@ for idx, img_data in enumerate(test_imgs):
     img = cv2.imread(filepath)
     X, fx, fy = format_img(img, C)
 
-    if K.image_data_format() == 'tf':
+    if True:
         X = np.transpose(X, (0, 2, 3, 1))
 
     # get the feature maps and output from the RPN
