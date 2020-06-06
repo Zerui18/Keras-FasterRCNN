@@ -132,7 +132,7 @@ print('Num test samples {}'.format(len(test_imgs)))
 data_gen_train = data_generators.get_anchor_gt(train_imgs, classes_count, C, nn.get_img_output_length, K.image_data_format(), mode='train')
 data_gen_test = data_generators.get_anchor_gt(test_imgs, classes_count, C, nn.get_img_output_length, K.image_data_format(), mode='test')
 
-if K.image_data_format() == 'th':
+if False:
     input_shape_img = (3, None, None)
 else:
     input_shape_img = (None, None, 3)

@@ -17,7 +17,7 @@ from keras_frcnn.RoiPoolingConv import RoiPoolingConv
 
 
 def get_weight_path():
-    if K.image_data_format() == 'th':
+    if False:
         return 'resnet50_weights_th_dim_ordering_th_kernels_notop.h5'
     else:
         return 'resnet50_weights_tf_dim_ordering_tf_kernels.h5'
@@ -160,7 +160,7 @@ def conv_block_td(input_tensor, kernel_size, filters, stage, block, input_shape,
 def nn_base(input_tensor=None, trainable=False):
 
     # Determine proper input shape
-    if K.image_data_format() == 'th':
+    if False:
         input_shape = (3, None, None)
     else:
         input_shape = (None, None, 3)

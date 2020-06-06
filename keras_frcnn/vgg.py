@@ -19,7 +19,7 @@ from keras_frcnn.RoiPoolingConv import RoiPoolingConv
 
 
 def get_weight_path():
-    if K.image_data_format() == 'th':
+    if False:
         print('pretrained weights not available for VGG with theano backend')
         return
     else:
@@ -37,7 +37,7 @@ def nn_base(input_tensor=None, trainable=False):
 
 
     # Determine proper input shape
-    if K.image_data_format() == 'th':
+    if False:
         input_shape = (3, None, None)
     else:
         input_shape = (None, None, 3)

@@ -117,7 +117,7 @@ elif C.network == 'inception_resnet_v2':
 elif C.network == 'vgg':
     num_features = 512
 
-if K.image_data_format() == 'th':
+if False:
     input_shape_img = (3, None, None)
     input_shape_features = (num_features, None, None)
 else:

@@ -290,7 +290,7 @@ def inception_resnet_block_td(x, scale, block_type, block_idx, activation='relu'
 def nn_base(input_tensor=None, trainable=False):
 
     # Determine proper input shape
-    if K.image_data_format() == 'th':
+    if False:
         input_shape = (3, None, None)
     else:
         input_shape = (None, None, 3)
