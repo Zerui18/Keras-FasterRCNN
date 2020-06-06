@@ -21,8 +21,8 @@ def get_data(input_path):
         annot_path = os.path.join(data_path, 'Annotations')
         imgs_path = os.path.join(data_path, 'JPEGImages')
 
-        #ImageSets/Main directory의 4개 파일(train, val, trainval, test)
-        imgsets_path_trainval = os.path.join(data_path, 'ImageSets', 'Main', 'trainval.txt')
+        #ImageSets/Main directory의 4개 파일(train, val, train_val, test)
+        imgsets_path_trainval = os.path.join(data_path, 'ImageSets', 'Main', 'train_val.txt')
         imgsets_path_train = os.path.join(data_path, 'ImageSets', 'Main', 'train.txt')
         imgsets_path_val = os.path.join(data_path, 'ImageSets', 'Main', 'val.txt')
         imgsets_path_test = os.path.join(data_path, 'ImageSets', 'Main', 'test.txt')
@@ -96,7 +96,7 @@ def get_data(input_path):
                 annotation_data['image_id'] = idx
 
                 if element_filename in trainval_files:
-                    annotation_data['imageset'] = 'trainval'
+                    annotation_data['imageset'] = 'train_val'
                     exist_flag = True
 
                 if element_filename in train_files:
@@ -113,11 +113,11 @@ def get_data(input_path):
                         exist_flag = True
 
                     # if element_filename in trainval_files:
-                    #     annotation_data['imageset'] = 'trainval'
+                    #     annotation_data['imageset'] = 'train_val'
                     # elif element_filename in test_files:
                     #     annotation_data['imageset'] = 'test'
                     # else:
-                    #     annotation_data['imageset'] = 'trainval'
+                    #     annotation_data['imageset'] = 'train_val'
 
             # annotation file not exist in ImageSet
             if not exist_flag:
