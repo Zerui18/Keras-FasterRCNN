@@ -216,6 +216,7 @@ for epoch_num in range(num_epochs):
             if mean_overlapping_bboxes == 0:
                 print('RPN is not producing bounding boxes that overlap the ground truth boxes. Check RPN settings or keep training.')
 
+        print('getting data')
         # data generator에서 X, Y, image 가져오기
         X, Y, img_data = next(data_gen_train)
         print('got data')
