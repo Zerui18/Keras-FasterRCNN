@@ -27,7 +27,7 @@ writer = tf.summary.create_file_writer('./logs')
 def write_log(callback, names, logs, batch_no):
     for name, value in zip(names, logs):
         with writer.as_default():
-            tf.summary.scalar(graph_name, value)
+            tf.summary.scalar(name, value)
             writer.flush()
 
 sys.setrecursionlimit(40000)
