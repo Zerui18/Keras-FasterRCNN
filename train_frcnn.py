@@ -21,12 +21,14 @@ from keras.utils import generic_utils
 from keras.callbacks import TensorBoard
 
 
+writer = tf.summary.create_file_writer('./logs')
+
 # tensorboard 로그 작성 함수
 def write_log(callback, names, logs, batch_no):
     for name, value in zip(names, logs):
-        with callback.writer.as_default():
+        with writer.as_default():
             tf.summary.scalar(graph_name, value)
-            callback.writer.flush()
+            writer.flush()
 
 sys.setrecursionlimit(40000)
 
