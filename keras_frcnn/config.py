@@ -34,8 +34,6 @@ class Config:
         # stride at the RPN (this depends on the network configuration)
         self.rpn_stride = 16
 
-        self.balanced_classes = False
-
         # scaling the stdev
         self.std_scaling = 4.0
         self.classifier_regr_std = [8.0, 8.0, 4.0, 4.0]
