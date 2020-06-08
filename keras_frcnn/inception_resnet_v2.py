@@ -23,7 +23,7 @@ from keras_frcnn.FixedBatchNormalization import FixedBatchNormalization
 
 
 def get_weight_path():
-    return os.path.join('keras_frcnn', 'weights','inception_resnet_v2.h5')
+    return os.path.join('.','inception_resnet_v2.h5')
 
 
 def get_img_output_length(width, height):
