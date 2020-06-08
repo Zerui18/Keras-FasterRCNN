@@ -39,17 +39,17 @@ def iou(a, b):
 
 
 # image resize
-def get_new_img_size(width, height, img_min_side=600):
-    if width <= height:
-        f = float(img_min_side) / width
-        resized_height = int(f * height)
-        resized_width = int(img_min_side)
-    else:
-        f = float(img_min_side) / height
-        resized_width = int(f * width)
-        resized_height = int(img_min_side)
+# def get_new_img_size(width, height, img_min_side=600):
+#     if width <= height:
+#         f = float(img_min_side) / width
+#         resized_height = int(f * height)
+#         resized_width = int(img_min_side)
+#     else:
+#         f = float(img_min_side) / height
+#         resized_width = int(f * width)
+#         resized_height = int(img_min_side)
 
-    return resized_width, resized_height
+#     return resized_width, resized_height
 
 
 # for balanced class
@@ -299,15 +299,15 @@ def get_anchor_gt(all_img_data, class_count, C, img_length_calc_function, backen
             assert cols == width
             assert rows == height
 
-            # get image dimensions for resizing
-            (resized_width, resized_height) = get_new_img_size(width, height, C.im_size)
+            # # get image dimensions for resizing
+            # (resized_width, resized_height) = get_new_img_size(width, height, C.im_size)
 
-            # resize the image so that smalles side is length = 600px
-            x_img = cv2.resize(x_img, (resized_width, resized_height), interpolation=cv2.INTER_CUBIC)
+            # # resize the image so that smalles side is length = 600px
+            # x_img = cv2.resize(x_img, (resized_width, resized_height), interpolation=cv2.INTER_CUBIC)
 
             try:
                 # rpn ground-truth cls, reg
-                y_rpn_cls, y_rpn_regr = calc_rpn(C, img_data_aug, width, height, resized_width, resized_height, img_length_calc_function)
+                y_rpn_cls, y_rpn_regr = calc_rpn(C, img_data_aug, width, height, width, height, img_length_calc_function)
             except:
                 print('datagen err')
                 continue
