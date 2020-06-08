@@ -12,7 +12,7 @@ def augment(img_data, config, augment=True):
 
     img_data_aug = copy.deepcopy(img_data)
 
-    img = img_data['data']
+    img = img_data_aug['data']
 
     if augment:
         rows, cols = img.shape[:2]
