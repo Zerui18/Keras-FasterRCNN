@@ -6,7 +6,7 @@ class_names = ['tops', 'trousers', 'outerwear', 'dresses', 'skirts']
 def load_data(pickle_path):
     all_imgs = {}
 
-    class_mapping = { i : c for i, c in enumerate(class_names) }
+    class_mapping = { c : i for i, c in enumerate(class_names) }
 
     data = load(open(pickle_path, 'rb'))
 
