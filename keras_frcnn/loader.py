@@ -39,6 +39,3 @@ def load_data(pickle_path):
         all_data.append(all_imgs[key])
 
     return all_data, classes_count, class_mapping
-
-print(load_data('/Users/zeruichen/Downloads/train.p'))
-
