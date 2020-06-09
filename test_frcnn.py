@@ -264,7 +264,7 @@ for idx, img_name in enumerate(sorted(os.listdir(img_path))):
     print('Elapsed time = {}'.format(time.time() - st))
     print(best_det)
     with open('./mAP/input/detection-results/' + img_name.split('.')[0] + '.txt', 'w') as f:
-        f.writelines(','.join([str(i) for i in best_det]))
+        f.writelines(' '.join([str(i) for i in best_det]))
     #cv2.imshow('img', img)
     #cv2.waitKey(0)
     cv2.imwrite('./results_imgs/{}.png'.format(idx),img)
