@@ -7,11 +7,11 @@ def augment(img_data, config, augment=True):
     assert 'bboxes' in img_data
     assert 'width' in img_data
     assert 'height' in img_data
-    assert 'data' in img_data
+    assert 'filepath' in img_data
 
     img_data_aug = copy.deepcopy(img_data)
 
-    img = img_data_aug['data']
+    img = cv2.imread(img_data_aug['filepath'])
 
     if augment:
         rows, cols = img.shape[:2]
