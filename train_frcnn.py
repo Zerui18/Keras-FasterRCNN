@@ -19,8 +19,6 @@ from keras_frcnn import losses as losses
 import keras_frcnn.roi_helpers as roi_helpers
 from keras.utils import generic_utils
 from keras.callbacks import TensorBoard
-from keras_frcnn.loader import load_data
-
 
 writer = tf.summary.create_file_writer('./logs')
 

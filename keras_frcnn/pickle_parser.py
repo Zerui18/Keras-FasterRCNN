@@ -3,7 +3,7 @@ from pickle import load
 
 class_names = ['tops', 'trousers', 'outerwear', 'dresses', 'skirts']
 
-def load_data(pickle_path):
+def get_data(pickle_path):
     all_imgs = {}
 
     class_mapping = { c : i for i, c in enumerate(class_names) }
