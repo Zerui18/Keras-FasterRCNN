@@ -56,7 +56,7 @@ img_path = options.test_path
 
 def findBestDet(all_dets):
     best_det = ()
-    currMaxConfidence = 0
+    currMaxConfidence = -1
     for det in all_dets:
         if det[1] > currMaxConfidence:
             currMaxConfidence = det[1]
@@ -163,7 +163,7 @@ all_imgs = []
 
 classes = {}
 
-bbox_threshold = 0.8
+bbox_threshold = 0.5
 
 visualise = True
 
@@ -263,7 +263,8 @@ for idx, img_name in enumerate(sorted(os.listdir(img_path))):
     best_det = findBestDet(all_dets)
     print('Elapsed time = {}'.format(time.time() - st))
     print(best_det)
-    with open('./mAP/input/detection-results/' + img_name.split('.')[0] + '.txt', 'w') as f:
+    print(all_dets)
+    with open('/content/drive/My Drive/FashionOD/mAP/input/detection-results/' + img_name.split('.')[0] + '.txt', 'w') as f:
         f.writelines(' '.join([str(i) for i in best_det]))
     #cv2.imshow('img', img)
     #cv2.waitKey(0)
