@@ -86,7 +86,7 @@ else:
     C.base_net_weights = nn.get_weight_path()
 
 # parser에서 이미지, 클래스, 클래스 맵핑 정보 가져오기
-all_imgs, classes_count, class_mapping = load_data(options.train_path)
+all_imgs, classes_count, class_mapping = get_data(options.train_path)
 
 # bg 클래스 추가
 if 'bg' not in classes_count:
